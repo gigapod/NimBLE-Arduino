@@ -17,6 +17,9 @@
  * under the License.
  */
 
+/* Teensy has its own cooperative NPL (no FreeRTOS) -- see nimble/teensy_port. */
+#ifndef ARDUINO_TEENSY41
+
 #include <stddef.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -168,3 +171,5 @@ nimble_port_freertos_get_ll_hwm(void)
 #endif
 
 #endif // ESP_PLATFORM
+
+#endif // !ARDUINO_TEENSY41

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-#ifndef ESP_PLATFORM
+#if !defined(ESP_PLATFORM) && !defined(ARDUINO_TEENSY41)
 
 #include <string.h>
 #include <stdint.h>

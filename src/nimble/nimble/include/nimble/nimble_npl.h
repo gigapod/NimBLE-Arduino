@@ -50,7 +50,11 @@ enum ble_npl_error {
 typedef enum ble_npl_error ble_npl_error_t;
 
 /* Include OS-specific definitions */
+#ifdef ARDUINO_TEENSY41
+#include "nimble/teensy_port/npl/include/nimble/nimble_npl_os.h"
+#else
 #include "nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h"
+#endif
 
 /*
  * Generic

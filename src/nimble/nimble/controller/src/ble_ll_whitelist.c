@@ -1,4 +1,4 @@
-#ifndef ESP_PLATFORM
+#if !defined(ESP_PLATFORM) && !defined(ARDUINO_TEENSY41)
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

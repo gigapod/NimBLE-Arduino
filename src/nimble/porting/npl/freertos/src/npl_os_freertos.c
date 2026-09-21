@@ -19,6 +19,9 @@
 
 #include "syscfg/syscfg.h"
 
+/* Teensy has its own cooperative NPL (no FreeRTOS) -- see nimble/teensy_port. */
+#ifndef ARDUINO_TEENSY41
+
 #if !CONFIG_BT_LE_CONTROLLER_NPL_OS_PORTING_SUPPORT
 
 #include <assert.h>
@@ -817,3 +820,5 @@ na_npl_freertos_eventq_init(struct ble_npl_eventq *evq)
     }
 }
 #endif /* CONFIG_BT_BLUEDROID_ENABLED */
+
+#endif // !ARDUINO_TEENSY41

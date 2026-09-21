@@ -205,6 +205,8 @@ extern "C" void set_nimble_nvs_namespace(const char *ns);
 #  include "syscfg/devcfg/nrf52833cfg.h"
 # elif defined(NRF52840_XXAA)
 #  include "syscfg/devcfg/nrf52840cfg.h"
+# elif defined(ARDUINO_TEENSY41)
+#  include "syscfg/devcfg/teensycfg.h"
 # else
 #  error No supported mcu config specified
 # endif
@@ -213,10 +215,28 @@ extern "C" void set_nimble_nvs_namespace(const char *ns);
 #  define MYNEWT_VAL_BLE_LL_SCA (500)
 # endif
 
+# ifdef ARDUINO_TEENSY41
+/*
+ * Teensy 4.x has no on-chip radio. NimBLE runs host-only here, talking to an
+ * external controller (Murata Type 1YN / Infineon CYW43439) over a real HCI
+ * H4 UART -- see src/nimble/teensy_port. This mirrors how NimBLE-Arduino
+ * already treats most ESP32 targets (host-only against the SoC's built-in
+ * controller); Teensy just has a real wire instead of a VHCI shim.
+ */
+#  define NIMBLE_CFG_CONTROLLER               (0)
+#  define MYNEWT_VAL_BLE_CONTROLLER           (0)
+/* "Legacy VHCI" here just selects the plain ACL mbuf header reservation used
+ * by every non-controller-in-this-binary target (nRF52 sets this too, despite
+ * running its own controller) -- it is unrelated to ESP32's VHCI shim. */
+#  define CONFIG_BT_NIMBLE_LEGACY_VHCI_ENABLE (1)
+/* No persistence backend wired up yet for Teensy -- bonds live in RAM only. */
+#  define MYNEWT_VAL_BLE_STORE_CONFIG_PERSIST (0)
+# else
 /* Required definitions for NimBLE */
-# define NIMBLE_CFG_CONTROLLER               (1)
-# define MYNEWT_VAL_BLE_CONTROLLER           (1)
-# define CONFIG_BT_NIMBLE_LEGACY_VHCI_ENABLE (1)
+#  define NIMBLE_CFG_CONTROLLER               (1)
+#  define MYNEWT_VAL_BLE_CONTROLLER           (1)
+#  define CONFIG_BT_NIMBLE_LEGACY_VHCI_ENABLE (1)
+# endif
 #endif // ESP_PLATFORM
 
 /* Required macros for all supported devices */

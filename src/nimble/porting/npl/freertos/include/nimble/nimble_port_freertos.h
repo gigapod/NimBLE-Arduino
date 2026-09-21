@@ -25,6 +25,8 @@
 #include "esp_err.h"
 #endif
 
+/* Teensy has no FreeRTOS task to run the host on -- see nimble/teensy_port. */
+#ifndef ARDUINO_TEENSY41
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,5 +63,7 @@ UBaseType_t nimble_port_freertos_get_hs_hwm(void);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // !ARDUINO_TEENSY41
 
 #endif /* _NIMBLE_PORT_FREERTOS_H */

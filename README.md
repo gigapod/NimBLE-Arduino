@@ -12,6 +12,7 @@ A fork of the NimBLE stack refactored for compilation in the Arduino IDE.
 ## Supported MCU's
  - Espressif: ESP32, ESP32C3, ESP32S3, ESP32C6, ESP32H2, ESP32C2, ESP32C5
  - Nordic: nRF51, nRF52 series (**Requires** using [n-able arduino core](https://github.com/h2zero/n-able-Arduino))
+ - Teensy 4.1 + Murata Type 1YN (Infineon/Cypress CYW43439), host-only over HCI UART -- see [src/nimble/teensy_port/README.md](src/nimble/teensy_port/README.md)
 
 **Note for ESP-IDF users: This repo will not compile correctly in ESP-IDF. An ESP-IDF component version of this library can be [found here.](https://github.com/h2zero/esp-nimble-cpp)**
 

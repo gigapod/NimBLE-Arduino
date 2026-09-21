@@ -529,6 +529,15 @@ bool NimBLEDevice::setPower(int8_t dbm, NimBLETxPowerType type) {
 
     return success;
 #  endif
+# elif defined(ARDUINO_TEENSY41)
+    // No local radio to set TX power on directly (the CYW43439 is an
+    // external controller, not driven by ble_phy.c) and no HCI-level TX
+    // power control implemented yet for it -- see
+    // src/nimble/teensy_port/README.md's "Known limitations".
+    (void)dbm;
+    (void)type;
+    NIMBLE_LOGE(LOG_TAG, "setPower() is not supported on this Teensy port");
+    return false;
 # else
     (void)type; // unused
     NIMBLE_LOGD(LOG_TAG, ">> setPower: %d", dbm);
@@ -572,6 +581,10 @@ int NimBLEDevice::getPower(NimBLETxPowerType type) {
 
     return 0;
 #  endif
+# elif defined(ARDUINO_TEENSY41)
+    // See setPower() above.
+    (void)type;
+    return 0;
 # else
     (void)type; // unused
     return ble_phy_tx_power_get();
@@ -883,8 +896,10 @@ void NimBLEDevice::onSync(void) {
  */
 void NimBLEDevice::host_task(void* param) {
     NIMBLE_LOGI(LOG_TAG, "NimBLE Started!");
+#ifndef ARDUINO_TEENSY41
     nimble_port_run(); // This function will return only when nimble_port_stop() is executed
     nimble_port_freertos_deinit();
+#endif
 } // host_task
 
 /**
@@ -1006,7 +1021,13 @@ bool NimBLEDevice::init(const std::string& deviceName) {
 
         setDeviceName(deviceName);
         ble_store_config_init();
+#ifndef ARDUINO_TEENSY41
         nimble_port_freertos_init(NimBLEDevice::host_task);
+#endif
+        // On Teensy there's no RTOS task to run the host loop: nimble_port_init()
+        // above already brought up the transport (UART + CYW43439 patchram) and
+        // queued the host's own startup sequence; the ble_npl_time_delay() below
+        // pumps it (and everything else) forward -- see nimble_port_teensy_pump().
     }
 
     // Wait for host and controller to sync before returning and accepting new tasks
