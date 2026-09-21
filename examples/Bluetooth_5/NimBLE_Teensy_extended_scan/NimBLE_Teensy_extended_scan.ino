@@ -14,8 +14,6 @@
 # error Must enable extended advertising, see nimconfig.h file.
 #endif
 
-extern "C" void nimble_port_teensy_pump(void);
-
 static uint32_t        scanTime = 10 * 1000; // In milliseconds, 0 = scan forever
 static NimBLEScan::Phy scanPhy  = NimBLEScan::Phy::SCAN_ALL;
 

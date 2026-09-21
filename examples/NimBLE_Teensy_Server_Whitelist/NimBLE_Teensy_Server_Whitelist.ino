@@ -9,8 +9,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 NimBLECharacteristic* pCharacteristic    = nullptr;
 bool                  deviceConnected    = false;
 bool                  oldDeviceConnected = false;

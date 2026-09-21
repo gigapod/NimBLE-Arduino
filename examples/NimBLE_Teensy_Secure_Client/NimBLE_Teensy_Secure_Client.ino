@@ -13,8 +13,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 class ClientCallbacks : public NimBLEClientCallbacks {
     void onPassKeyEntry(NimBLEConnInfo& connInfo) override {
         Serial.printf("Server Passkey Entry\n");

@@ -29,6 +29,10 @@
       (CONFIG_BTDM_BLE_SCAN_DUPL || CONFIG_BT_LE_SCAN_DUPL || CONFIG_BT_CTRL_BLE_SCAN_DUPL)
 # endif
 
+# ifdef ARDUINO_TEENSY41
+#  include "nimble/teensy_port/npl/include/nimble/nimble_port_teensy.h"
+# endif
+
 # ifdef USING_NIMBLE_ARDUINO_HEADERS
 #  include "nimble/nimble/host/include/host/ble_gap.h"
 # else

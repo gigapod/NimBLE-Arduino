@@ -16,8 +16,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 void setup() {
     Serial.begin(115200);
     Serial.println("Starting NimBLE Teensy Secure Server");

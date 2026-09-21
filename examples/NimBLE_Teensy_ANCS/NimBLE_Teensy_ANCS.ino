@@ -8,8 +8,6 @@
 #include <Arduino.h>
 #include "NimBLEDevice.h"
 
-extern "C" void nimble_port_teensy_pump(void);
-
 static NimBLEUUID ancsServiceUUID("7905F431-B5CE-4E99-A40F-4B1E122D00D0");
 static NimBLEUUID notificationSourceCharacteristicUUID("9FBF120D-6301-42D9-8C58-25E699A21DBD");
 static NimBLEUUID controlPointCharacteristicUUID("69D1D8F3-45E1-49A8-9821-9BBDFDAAD9D9");

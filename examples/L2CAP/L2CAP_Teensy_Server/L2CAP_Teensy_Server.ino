@@ -12,8 +12,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
 

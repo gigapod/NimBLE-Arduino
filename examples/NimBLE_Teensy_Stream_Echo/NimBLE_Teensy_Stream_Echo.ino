@@ -14,8 +14,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 NimBLEStreamServer bleStream;
 
 struct RxOverflowStats {

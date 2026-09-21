@@ -21,8 +21,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 static constexpr uint32_t scanTimeMs = 30 * 1000; // 30 seconds scan time.
 
 class ScanCallbacks : public NimBLEScanCallbacks {

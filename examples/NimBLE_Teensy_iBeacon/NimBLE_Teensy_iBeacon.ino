@@ -11,8 +11,6 @@
 #include <NimBLEDevice.h>
 #include <NimBLEBeacon.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 // According to Apple, it's important to have a 100ms advertising time
 #define BEACON_ADVERTISING_TIME 160 // 100ms
 

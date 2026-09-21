@@ -14,8 +14,6 @@
 # error Must enable extended advertising, see nimconfig.h file.
 #endif
 
-extern "C" void nimble_port_teensy_pump(void);
-
 #define SERVICE_UUID        "ABCD"
 #define CHARACTERISTIC_UUID "1234"
 

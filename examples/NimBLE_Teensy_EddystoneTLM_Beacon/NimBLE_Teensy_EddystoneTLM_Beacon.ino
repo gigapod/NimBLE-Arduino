@@ -22,8 +22,6 @@
 #include <NimBLEDevice.h>
 #include <NimBLEEddystoneTLM.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 #define BEACON_UPDATE_PERIOD_MS 10000 // re-beacon every 10s (was: advertise 10s then deep sleep 10s)
 #define BEACON_POWER            3     // 3dbm
 

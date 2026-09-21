@@ -11,8 +11,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 #if MYNEWT_VAL(BLE_L2CAP_COC_MAX_NUM) < 1
 # error "MYNEWT_VAL_BLE_L2CAP_COC_MAX_NUM must be set to 1 or greater"
 #endif

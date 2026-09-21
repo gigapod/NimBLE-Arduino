@@ -15,8 +15,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 static NimBLEServer* pServer;
 static NimBLECharacteristic* pFoodCharacteristic;
 

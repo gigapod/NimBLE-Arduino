@@ -11,8 +11,6 @@
 #include <Arduino.h>
 #include <NimBLEDevice.h>
 
-extern "C" void nimble_port_teensy_pump(void);
-
 static const NimBLEAdvertisedDevice* advDevice;
 static bool                          doConnect  = false;
 static uint32_t                      scanTimeMs = 5000; /** scan time in milliseconds, 0 = scan forever */

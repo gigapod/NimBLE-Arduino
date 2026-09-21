@@ -17,8 +17,6 @@
 #include "NimBLEEddystoneTLM.h"
 #include "NimBLEBeacon.h"
 
-extern "C" void nimble_port_teensy_pump(void);
-
 #define ENDIAN_CHANGE_U16(x) ((((x) & 0xFF00) >> 8) + (((x) & 0xFF) << 8))
 
 int         scanTime = 5 * 1000; // In milliseconds
